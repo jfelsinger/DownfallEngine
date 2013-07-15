@@ -10,7 +10,7 @@ LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 SRCS=main.cpp Engine.cpp $(GS)GameState.cpp $(WB)LayerGroup.cpp $(WB)MapFactory.cpp $(WB)Map.cpp $(WB)Tile.cpp $(WB)World.cpp $(RM)ImageManager.cpp $(RM)TextureManager.cpp
 OBJS=$(subst .cpp,.o,$(SRCS))
 
-all: epicAdventure
+all: downfallEngine
 
 Engine.o: Engine.cpp engine.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -42,9 +42,9 @@ $(RM)TextureManager.o : $(RM)TextureManager.cpp
 $(RM)ImageManager.o : $(RM)ImageManager.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-epicAdventure: $(OBJS)
+downfallEngine: $(OBJS)
 	@echo "** Building..."
-	$(CXX) $(CXXFLAGS) -o EpicAdventure $(OBJS) $(LIBS)
+	$(CXX) $(CXXFLAGS) -o Downfall $(OBJS) $(LIBS)
 
 clean:
 	@echo "** Removing object files and executable..."
@@ -52,8 +52,8 @@ clean:
 
 install:
 	@echo "** Installing..."
-	cp epicAdventure /usr/bin/
+	cp downfall /usr/bin/
 
 uninstall:
 	@echo "** Uninstalling..."
-	$(RM) /usr/bin/thegame
+	$(RM) /usr/bin/downfall
