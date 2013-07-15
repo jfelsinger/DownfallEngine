@@ -8,7 +8,6 @@ namespace wb
 
     Tile::Tile(LayerGroup* lg)
     {
-        // test:
         layerGroup = lg;
     }
 

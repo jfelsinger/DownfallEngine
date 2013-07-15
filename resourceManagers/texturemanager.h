@@ -1,5 +1,10 @@
 //===========================
 // texturemanager.h
+//
+// Manages sets of textures that can be used as game
+// sprites. Size isn't limited but spritesheets should
+// be loaded in grouped by size to make things easier
+//
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 

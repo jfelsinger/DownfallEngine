@@ -16,6 +16,8 @@ namespace rm
         images.push_back(image);
     }
 
+    // Generally used for loading an entire spritesheet at once so that
+    // it can be chopped up by the texture manager
     void ImageManager::LoadImageFromFile(const std::string imgLocation)
     {
         sf::Image image;

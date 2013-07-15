@@ -1,5 +1,11 @@
 //===========================
 // state.h
+//
+// States are distinct states that the application
+// could be in within the running process
+// The game itself would be one,
+// The start menu would be another. etc, etc.
+//
 #ifndef STATE_H
 #define STATE_H
 

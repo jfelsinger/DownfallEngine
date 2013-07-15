@@ -1,5 +1,11 @@
 //===========================
 // world.h
+//
+// Encapsulates the entire game world,
+// I am thinking that their would only be one per game session.
+// It holds all of the places that something might happen in the game (maps)
+// as well as of the somethings that might be in the game (entities) [maybe]
+//
 #ifndef WORLD_H
 #define WORLD_H
 
@@ -19,7 +25,7 @@ namespace wb
     {
         private:
             std::vector<Map*> maps;
-            // std::vector<Entities> // Probably a good place for them
+            // std::vector<Entities> // Probably a good place for them, but might need to go somewhere's else (IDK)
 
         public:
             World();

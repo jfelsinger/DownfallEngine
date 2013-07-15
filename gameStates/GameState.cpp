@@ -66,11 +66,14 @@ namespace gs
             sf::Sprite* sprite = new sf::Sprite();
 
             // we are printing out all of the sprites in a sprite sheet
+            // particularly, a list of mc sprites. lol
             sf::Texture* texture = textureManager->GetTexture(i);
 
             sprite->setTexture(*texture);
 
-            // Only one sprite on the layer groups for now
+            // Only one sprite on the layer groups 
+            // at least until a system for storing the layer
+            // groups is in place
             wb::LayerGroup* lg = new wb::LayerGroup();
             lg->AddFloorSprite(sprite);
 

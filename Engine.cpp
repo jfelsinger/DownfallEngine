@@ -25,12 +25,20 @@ namespace ae
     {
         renderWindow = new sf::RenderWindow(sf::VideoMode(800, 600, 32), "Adventure Engine");
 
+        // Going to have to use some type of resource file when the app gets released
+        // Don't want our resources to be so easy to get to, lol
+        //
+        // Load all of the spritesheet/common images into memory so that drawing them
+        // is quick, special images (ie those used in cutscenes) would be loaded
+        // when used.
         imageManager.LoadImageFromFile("textures/mc16x16.png");
         textureManager.FillFromImage(imageManager.GetImage(0), 16, 16);
 
         // Initialize a new game state
+        // Will be handled by a menu later on and wouldn't start as a gamestate
         state = new gs::GameState();
 
+        // Give the gamestate a reference to the textures
         state->SetTextureManager(&textureManager);
         state->Init();
     }
@@ -96,6 +104,7 @@ namespace ae
 
     void Engine::Cleanup()
     {
+        // Everybody, everywhere
     }
 
     void Engine::Run()

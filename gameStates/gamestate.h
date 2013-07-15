@@ -1,5 +1,12 @@
 //===========================
 // gamestate.h
+//
+// The game state handles the input and processing of the `actual`
+// game. The world, the monsters, the player actions, and everything
+// below it where gameplay in the world is involved.
+//
+// We're going to need a way to load and restore this later
+//
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 

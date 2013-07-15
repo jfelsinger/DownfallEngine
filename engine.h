@@ -1,5 +1,11 @@
 //===========================
 // engine.h
+//
+// The engine facilitates the running of the
+// entire application. Especially handles the loading of
+// all resources so that they can be used by other things
+// later.
+//
 #ifndef ENGINE_H
 #define ENGINE_H
 
@@ -23,7 +29,8 @@ namespace ae
     class Engine
     {
         private:
-            gs::GameState* state;
+            gs::GameState* state;   // Currently set to gamestate so that I don't have to worry about casting
+                                    // Should just be a base State class so that it is interchangeable.
             rm::ImageManager imageManager;
             rm::TextureManager textureManager;
             sf::RenderWindow* renderWindow;
@@ -45,8 +52,6 @@ namespace ae
             void Cleanup(); // Clean up for after exiting
 
             void Run();
-
-            void Draw(); // Temp
     };
 }
 

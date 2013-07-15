@@ -1,5 +1,10 @@
 //===========================
 // imagemanager.h
+//
+// Just used for managing images,
+// Sprite sheets before they have been chopped up,
+// Large images for backgrounds/etc. You know viewy things
+//
 #ifndef IMAGEMANAGER_H
 #define IMAGEMANAGER_H
 
