@@ -37,6 +37,9 @@ namespace ae
             sf::Time updateRate;
             uint32_t maxUpdates;
 
+            // making events private, why would you call them directly? 
+            void onResize();
+
         public:
             Engine();
             ~Engine();

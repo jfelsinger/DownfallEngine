@@ -1,3 +1,4 @@
+#include <iostream>
 #include <stdint.h>
 #include <SFML/Graphics.hpp>
 
@@ -12,7 +13,7 @@
 namespace ae
 {
     Engine::Engine() :
-        updateRate(sf::milliseconds(1000.0f / 20.0f)), // 20Hz(df) // Super slowed it down, this thing eats cpu
+        updateRate(sf::milliseconds(1000.0f / 20.0f)), // 20Hz(df)
         maxUpdates(10)
     {
     }
@@ -63,7 +64,7 @@ namespace ae
             // If the time elapsed (currentTime - updateNext) is >= the update rate, (We don't have extra time)
             // and the ammount of updated is still lower than the max to run before drawing
             // continue to process/catchup
-            while((currentTime - updateNext) >= updateRate /*&& updates++ < maxUpdates*/)
+            while((currentTime - updateNext) >= updateRate && updates++ < maxUpdates)
             {
 
                 // Set the time for the next update
@@ -96,6 +97,8 @@ namespace ae
 
         if (event.type == sf::Event::Closed)
             renderWindow->close();
+        else if (event.type == sf::Event::Resized)
+            onResize();
     }
 
     void Engine::Update()
@@ -114,5 +117,21 @@ namespace ae
         MainLoop();
 
         Cleanup();
+    }
+
+    void Engine::onResize()
+    {
+        sf::Vector2f size = static_cast<sf::Vector2f>(renderWindow->getSize());
+
+        if (size.x < 800)
+            size.x = 800;
+        if (size.y < 600)
+            size.y = 600;
+
+        renderWindow->setSize(static_cast<sf::Vector2u>(size));
+
+        // Reset grid view
+        
+        renderWindow->setView(*(new sf::View(sf::FloatRect(0.f, 0.f, size.x, size.y))));
     }
 }
