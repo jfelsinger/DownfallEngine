@@ -24,7 +24,7 @@ namespace gs {
 #include "resourceManagers/imagemanager.h"
 #include "resourceManagers/texturemanager.h"
 
-namespace ae
+namespace de
 {
     class Engine
     {

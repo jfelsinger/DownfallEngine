@@ -10,7 +10,7 @@
 #include "gameStates/gamestate.h"
 #include "engine.h"
 
-namespace ae
+namespace de
 {
     Engine::Engine() :
         updateRate(sf::milliseconds(100.0f / 5.0f)), // 20Hz(df)
@@ -24,7 +24,7 @@ namespace ae
 
     void Engine::Init()
     {
-        renderWindow = new sf::RenderWindow(sf::VideoMode(800, 600, 32), "Adventure Engine");
+        renderWindow = new sf::RenderWindow(sf::VideoMode(800, 600, 32), "Downfall Engine");
 
         // Going to have to use some type of resource file when the app gets released
         // Don't want our resources to be so easy to get to, lol
