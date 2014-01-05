@@ -13,7 +13,7 @@
 namespace ae
 {
     Engine::Engine() :
-        updateRate(sf::milliseconds(1000.0f / 20.0f)), // 20Hz(df)
+        updateRate(sf::milliseconds(100.0f / 5.0f)), // 20Hz(df)
         maxUpdates(10)
     {
     }
@@ -66,10 +66,10 @@ namespace ae
             // continue to process/catchup
             while((currentTime - updateNext) >= updateRate && updates++ < maxUpdates)
             {
-
                 // Set the time for the next update
                 updateNext += updateRate;
             }
+
             // When we have extra time, or it has processed the max amount of updates
             // the below runs, drawing what output there is to draw
 
@@ -79,8 +79,11 @@ namespace ae
             // Display everything that was drawn
             renderWindow->display();
 
+            currentTime = updateClock.getElapsedTime();
+
             // Calculate the remaining time and sleep it
             sf::Time sleepTime = currentTime - updateNext;
+
             if (sleepTime > sf::milliseconds(0))
             {
                 sf::sleep(sleepTime);
@@ -93,12 +96,41 @@ namespace ae
         // A bunch of temporary stuff to handle if the window has been closed or not
         sf::Event event;
 
-        renderWindow->pollEvent(event);
+        // std::cout << "Process Input : ";
 
-        if (event.type == sf::Event::Closed)
-            renderWindow->close();
-        else if (event.type == sf::Event::Resized)
-            onResize();
+        while(renderWindow->pollEvent(event))
+        {
+
+            // std::cout << event.type << std::endl;
+
+            switch (event.type)
+            {
+                case sf::Event::MouseButtonPressed:
+                    std::cout << "Click" << std::endl;
+                    break;
+
+                case sf::Event::KeyPressed:
+                    std::cout << "Key Press" << std::endl;
+                    break;
+
+                case sf::Event::Closed:
+                    std::cout << "Closing" << std::endl;
+                    renderWindow->close();
+                    break;
+
+                case sf::Event::LostFocus:
+                    std::cout << "Lost Focus" << std::endl;
+                    break;
+
+                case sf::Event::GainedFocus:
+                    std::cout << "Gained Focus" << std::endl;
+                    break;
+
+                case sf::Event::Resized:
+                    onResize();
+                    break;
+            }
+        }
     }
 
     void Engine::Update()
