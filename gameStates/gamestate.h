@@ -18,6 +18,9 @@ namespace wb {
 namespace rm {
     class TextureManager;
 }
+namespace gs {
+    class Camera;
+}
 
 //===========================
 // Included dependencies
@@ -30,6 +33,7 @@ namespace gs
     class GameState : public State
     {
         private:
+            Camera* camera;
             wb::World* world;
             rm::TextureManager* textureManager;
             std::vector<wb::LayerGroup> layerGroups;

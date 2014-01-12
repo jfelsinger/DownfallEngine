@@ -66,6 +66,8 @@ namespace de
             // continue to process/catchup
             while((currentTime - updateNext) >= updateRate && updates++ < maxUpdates)
             {
+                // Perform state updates here
+
                 // Set the time for the next update
                 updateNext += updateRate;
             }
@@ -96,8 +98,7 @@ namespace de
         // A bunch of temporary stuff to handle if the window has been closed or not
         sf::Event event;
 
-        // std::cout << "Process Input : ";
-
+        // While we have events, process them
         while(renderWindow->pollEvent(event))
         {
 

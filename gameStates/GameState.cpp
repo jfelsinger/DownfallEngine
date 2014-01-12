@@ -1,4 +1,5 @@
 #include "gamestate.h"
+#include "./camera.h"
 #include "../resourceManagers/texturemanager.h"
 #include "../worldBuilding/layergroup.h"
 #include "../worldBuilding/tile.h"
@@ -20,7 +21,7 @@ namespace gs
 
     void GameState::Draw(sf::RenderWindow* renderWindow)
     {
-        wb::Map* map = world->GetMap(0);
+        wb::Map* map = camera->GetMap();
 
         int w = map->GetWidth();
         int h = map->GetHeight();
@@ -51,6 +52,10 @@ namespace gs
         // Instantiate a new world and add the map to it
         world = new wb::World();
         world->AddMap(map);
+
+        // Instantiate the camera and add the map to it
+        camera = new Camera(5, 5, 0.75f);
+        camera->SetMap(map);
     }
 
     void GameState::SetTextureManager(rm::TextureManager* tm)

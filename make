@@ -7,7 +7,7 @@ RM=resourceManagers/
 GS=gameStates/
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 
-SRCS=main.cpp Engine.cpp $(GS)GameState.cpp $(WB)LayerGroup.cpp $(WB)MapFactory.cpp $(WB)Map.cpp $(WB)Tile.cpp $(WB)World.cpp $(RM)ImageManager.cpp $(RM)TextureManager.cpp
+SRCS=main.cpp Engine.cpp $(GS)GameState.cpp $(GS)Camera.cpp $(WB)LayerGroup.cpp $(WB)MapFactory.cpp $(WB)Map.cpp $(WB)Tile.cpp $(WB)World.cpp $(RM)ImageManager.cpp $(RM)TextureManager.cpp
 OBJS=$(subst .cpp,.o,$(SRCS))
 
 all: downfallEngine
@@ -16,6 +16,9 @@ Engine.o: Engine.cpp engine.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 main.o : main.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(GS)Camera.o : $(GS)Camera.cpp $(GS)camera.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(GS)GameState.o : $(GS)GameState.cpp $(GS)gamestate.h
