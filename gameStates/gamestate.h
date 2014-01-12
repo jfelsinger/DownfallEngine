@@ -43,6 +43,7 @@ namespace gs
             ~GameState();
 
             void Init();
+            void Update();
             void Draw(sf::RenderWindow* renderWindow);
             void LoadLayerGroups();
             void SetTextureManager(rm::TextureManager* tm);

@@ -67,6 +67,7 @@ namespace de
             while((currentTime - updateNext) >= updateRate && updates++ < maxUpdates)
             {
                 // Perform state updates here
+                state->Update();
 
                 // Set the time for the next update
                 updateNext += updateRate;

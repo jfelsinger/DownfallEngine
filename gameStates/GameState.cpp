@@ -1,4 +1,5 @@
 #include "gamestate.h"
+#include "../config.cpp"
 #include "./camera.h"
 #include "../resourceManagers/texturemanager.h"
 #include "../worldBuilding/layergroup.h"
@@ -26,17 +27,24 @@ namespace gs
         int w = map->GetWidth();
         int h = map->GetHeight();
 
+        sf::Vector2i camOffset = camera->GetTileOffset(conf::TILE_SIZE);
+        sf::IntRect bounds = camera->GetTileBounds(conf::TILE_SIZE);
+
         renderWindow->clear();
 
         // Iterate through all of the tiles in the map
-        for (int i = 0; i < w; i++)
+        for (int y = 0, tileY = bounds.top; y <= bounds.height; y++, tileY++)
         {
-            for (int j = 0; j < h; j++)
+            for (int x = 0, tileX = bounds.left; x <= bounds.width; x++, tileX++)
             {
                 // Draw tiles to the screen
-                map->GetTile(i, j)
+                map->GetTile(tileX, tileY)
                    ->GetLayerGroup()
-                   ->Draw(i*16, j*16, renderWindow); // 16x16 is the size of the tile, so each one should be rendered at an offset of 16
+                   ->Draw(
+                       x * conf::TILE_SIZE - camOffset.x, 
+                       y * conf::TILE_SIZE - camOffset.y, 
+                       renderWindow
+                   ); // conf::TILE_SIZExconf::TILE_SIZE is the size of the tile, so each one should be rendered at an offset of conf::TILE_SIZE
             }
         }
     }
@@ -54,8 +62,15 @@ namespace gs
         world->AddMap(map);
 
         // Instantiate the camera and add the map to it
-        camera = new Camera(5, 5, 0.75f);
+        camera = new Camera(800, 600, 1.0f);
         camera->SetMap(map);
+
+        camera->PanTo(5*conf::TILE_SIZE, 0);
+    }
+
+    void GameState::Update()
+    {
+        camera->Update();
     }
 
     void GameState::SetTextureManager(rm::TextureManager* tm)

@@ -22,7 +22,7 @@ namespace gs
             sf::Vector2f position;
             sf::Vector2f targetPosition;
 
-            // Dimensions of viewable area
+            // Dimensions of viewable area, in px
             int width;
             int height;
 
